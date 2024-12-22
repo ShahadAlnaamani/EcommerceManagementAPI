@@ -11,5 +11,6 @@ namespace EcommerceManagementAPI.Repositories
         User GetUserByID(int ID);
         User GetUserByPhone(string phone);
         List<User> GetUsersByName(string name);
+        User CheckEmail(string email);
     }
 }

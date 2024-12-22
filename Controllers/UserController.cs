@@ -85,6 +85,7 @@ namespace EcommerceManagementAPI.Controllers
         ///----------------------------------The following are all admin only functions----------------------------------------// 
 
         //Gets all user (DTO) details to admins only 
+        [Authorize(Roles = "Admin")]
         [HttpGet("ADMIN: GetAllUsers")]
         public IActionResult GetAllUsers()
         {
@@ -101,7 +102,9 @@ namespace EcommerceManagementAPI.Controllers
 
 
         //Adds a new admin can only be done through another admin account, creating a chain of trust (not most secure but is good enough for now) [returns admin ID]
+        [Authorize(Roles = "Admin")] 
         [HttpPost("ADMIN: AddAdmin")]
+
         public IActionResult AddAdmin(UserInDTO user)
         {
             try
@@ -116,6 +119,7 @@ namespace EcommerceManagementAPI.Controllers
 
 
         //Allows admins to search for specific accounts using ID (only authenticated admin accounts can use this function) [Returns user DTO]
+        [Authorize(Roles = "Admin")]
         [HttpGet("ADMIN: GetUserByID {ID}")]
         public IActionResult GetUserByID(int ID)
         {
@@ -135,6 +139,7 @@ namespace EcommerceManagementAPI.Controllers
 
 
         //Allows admins to search for specific accounts using name (only authenticated admin accounts can use this function) [Returns user DTO]
+        [Authorize(Roles = "Admin")]
         [HttpGet("ADMIN: GetUserByName {Name}")]
         public IActionResult GetUserByName(string Name)
         {
@@ -153,6 +158,7 @@ namespace EcommerceManagementAPI.Controllers
         }
 
         //Allows admins to search for specific accounts using phone no(only authenticated admin accounts can use this function) [Returns user DTO]
+        [Authorize(Roles = "Admin")]
         [HttpGet("ADMIN: GetUserByPhoneNo {PhoneNo}")]
         public IActionResult GetUserByPhoneNo(string phone)
         {

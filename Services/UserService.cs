@@ -46,15 +46,24 @@ namespace EcommerceManagementAPI.Services
         //Login function uses email and password [returns User]
         public User Login(string email, string password)
         {
-            var hashedpass = _userrepository.GetHashedPass(email);
-
-            bool verified = BCrypt.Net.BCrypt.Verify(password, hashedpass);
-            if (verified)
+            try
             {
-                return _userrepository.GetUserByEmail(email, hashedpass);
-            }
+                var user = _userrepository.CheckEmail(email);
+                if (user != null)
+                {
+                    var hashedpass = _userrepository.GetHashedPass(email);
 
-            else throw new UnauthorizedAccessException("<!>Invalid credentials<!>");
+                    bool verified = BCrypt.Net.BCrypt.Verify(password, hashedpass);
+                    if (verified)
+                    {
+                        return _userrepository.GetUserByEmail(email, hashedpass);
+                    }
+
+                    else return null;
+                }
+                else return null;
+            }
+            catch { return null; }
         }
 
 

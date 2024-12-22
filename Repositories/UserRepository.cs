@@ -65,5 +65,10 @@ namespace EcommerceManagementAPI.Repositories
             var user = _context.Users.FirstOrDefault(u => u.Email == email);
             return user.Password;
         }
+
+        public User CheckEmail(string email)
+        {
+            return _context.Users.Where(u=>u.Email == email).FirstOrDefault();
+        }
     }
 }
