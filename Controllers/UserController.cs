@@ -160,11 +160,11 @@ namespace EcommerceManagementAPI.Controllers
         //Allows admins to search for specific accounts using phone no(only authenticated admin accounts can use this function) [Returns user DTO]
         [Authorize(Roles = "Admin")]
         [HttpGet("ADMIN: GetUserByPhoneNo {PhoneNo}")]
-        public IActionResult GetUserByPhoneNo(string phone)
+        public IActionResult GetUserByPhoneNo(string PhoneNo)
         {
             try
             {
-                var users = _userService.GetUserByPhoneNo(phone); //Getting user 
+                var users = _userService.GetUserByPhoneNo(PhoneNo); //Getting user 
 
                 if (users == null) return BadRequest("<!>No users with this phone number<!>");
                 else return Ok(users);

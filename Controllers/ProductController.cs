@@ -6,7 +6,7 @@ using System.Security.Claims;
 
 namespace EcommerceManagementAPI.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]//Ensures that specific functions are only used by admins 
     [ApiController]
     [Route("api/[Controller]")]
     public class ProductController : ControllerBase
@@ -18,7 +18,7 @@ namespace EcommerceManagementAPI.Controllers
         }
 
 
-        [Authorize(Roles = "Admin")] //Ensures that specific functions are only used by admins 
+
         [HttpPost("ADMIN: AddProduct")]
         public IActionResult AddProduct(ProductInDTO product)
         {
@@ -34,7 +34,7 @@ namespace EcommerceManagementAPI.Controllers
         }
 
 
-        [Authorize(Roles = "Admin")] //Ensures that specific functions only used by admins
+
         [HttpPost("ADMIN: Update product")]
         public IActionResult UpdateProduct(ProductInDTO update)
         {
@@ -44,7 +44,7 @@ namespace EcommerceManagementAPI.Controllers
 
         [AllowAnonymous]
         [HttpGet("GetAllProducts")]
-        public IActionResult GetAllProducts(int page = 1, int pagesize = 1, int rating = 5, string category = "")
+        public IActionResult GetAllProducts(int page = 1, int pagesize = 1, int rating = 0, string category = null)
         {
             try
             {
@@ -65,7 +65,7 @@ namespace EcommerceManagementAPI.Controllers
             }
         }
 
-        [Authorize(Roles = "Admin")]
+
         [HttpGet("GetProductByID {ID}")]
         public IActionResult GetProductByID(int ID)
         {
