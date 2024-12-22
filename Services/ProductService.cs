@@ -121,5 +121,10 @@ namespace EcommerceManagementAPI.Services
         {
             return _productrepository.UpdateAfterOrder(product, ID);
         }
+
+        public string GetProductNameByID(int ID)
+        {
+            return _productrepository.GetProductNameByID(ID);
+        }
     }
 }
