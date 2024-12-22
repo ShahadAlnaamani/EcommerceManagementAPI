@@ -131,5 +131,10 @@ namespace EcommerceManagementAPI.Services
         {
             return _productrepository.GetFullProductsByName(name);
         }
+
+        public void UpdateRating(int prodID)
+        {
+            _productrepository.UpdateProductRating(prodID);
+        }
     }
 }

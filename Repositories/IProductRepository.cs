@@ -16,7 +16,7 @@ namespace EcommerceManagementAPI.Repositories
         List<Product> GetProductsByRating(int page, int pageSize, int rating);
         bool UpdateAfterOrder(ProductInDTO newprod, int ProdID);
         bool UpdateProduct(ProductInDTO newprod, int ProdID, int AdminID);
-        decimal UpdateProductRating(Product product);
         Product GetFullProductsByName(string Name);
+        decimal UpdateProductRating(int prodID);
     }
 }

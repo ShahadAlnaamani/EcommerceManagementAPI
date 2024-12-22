@@ -12,5 +12,6 @@ namespace EcommerceManagementAPI.Repositories
         Review GetReviewByRID(int reviewID);
         Review Getspecific(int userID, int prodID);
         void UpdateReview(Review review);
+        List<Review> GetAllReviewsByID(int ProdID);
     }
 }

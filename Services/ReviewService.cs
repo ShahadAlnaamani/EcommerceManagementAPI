@@ -50,5 +50,24 @@ namespace EcommerceManagementAPI.Services
             return _reviewrepository.GetAllReviewsByID(Page, PageSize, prodID);
         }
 
-    }
+        public void AverageReviewCalculator(int productID)
+        {
+        //    decimal total = 0;
+        //    var reviews = _reviewrepository.GetAllReviewsByID(productID);
+
+        //    foreach (var review in reviews) 
+        //    {
+        //        total = +review.Rating;
+        //    }
+
+        //    decimal average; 
+
+        //    if (reviews.Count > 0)
+        //    { average = total / reviews.Count(); }
+
+        //    else 
+        //    return ;
+        }
+
+}
 }

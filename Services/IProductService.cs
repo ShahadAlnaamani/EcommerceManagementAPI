@@ -15,6 +15,7 @@ namespace EcommerceManagementAPI.Services
         int UpdateProduct(ProductInDTO product, int AdminID);
         string GetProductNameByID(int ID);
         Product GetFullProductByName(string name);
+        void UpdateRating(int prodID);
 
     }
 }

@@ -64,8 +64,9 @@ namespace EcommerceManagementAPI.Repositories
         }
 
         //[returns new prod rating]
-        public decimal UpdateProductRating(Product product)
+        public decimal UpdateProductRating(int prodID)
         {
+            var product = GetProductByID(prodID);
             _context.Products.Update(product);
             _context.SaveChanges();
             return product.Rating; //Updated successfully

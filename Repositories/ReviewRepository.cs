@@ -25,6 +25,11 @@ namespace EcommerceManagementAPI.Repositories
             return _context.Reviews.Where(r => r.RID == ProdID).Skip(number).Take(pageSize).ToList();
         }
 
+        public List<Review> GetAllReviewsByID(int ProdID)
+        {
+            return _context.Reviews.Where(r => r.RID == ProdID).ToList();
+        }
+
         public Review CheckNewProdReview(int UserID, int prodID)
         {
             return _context.Reviews.FirstOrDefault(r => r.UserID == UserID && r.ProductID == prodID);

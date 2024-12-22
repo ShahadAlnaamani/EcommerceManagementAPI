@@ -109,7 +109,14 @@ namespace EcommerceManagementAPI.Services
                             Comment = review.Comment,
                             ReviewDate = DateTime.Now,
                         };
-                        return _reviewservice.AddReview(NewReview);
+
+                        var Review = _reviewservice.AddReview(NewReview);
+
+                        //var product =  _productservice.GetProductByID(prodID);
+                        //product.Rating = _reviewservice.AverageReviewCalculator(prodID);
+                        //_productservice.UpdateRating(prodID);
+
+                        return Review; 
                     }
                     else throw new Exception("<!>It looks like you have already made a review on this product before<!>");
                 }
