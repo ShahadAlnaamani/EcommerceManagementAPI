@@ -1,4 +1,6 @@
 
+using EcommerceManagementAPI.Repositories;
+using EcommerceManagementAPI.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -67,6 +69,10 @@ namespace EcommerceManagementAPI
     });
             });
 
+
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
+
+            builder.Services.AddScoped<IUserService, UserService>();
 
 
 
