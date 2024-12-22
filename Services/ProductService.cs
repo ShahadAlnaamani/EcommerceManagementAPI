@@ -7,6 +7,7 @@ namespace EcommerceManagementAPI.Services
     public class ProductService : IProductService
     {
         private readonly IProductRepository _productrepository;
+
         public ProductService(IProductRepository productrepo)
         {
             _productrepository = productrepo;
@@ -101,6 +102,24 @@ namespace EcommerceManagementAPI.Services
                 Category = product.Category,
             };
             return output;
+        }
+
+
+        public int GetProductByName(string name)
+        {
+            //gets product id by name 
+            return _productrepository.GetProductByName(name);
+        }
+
+        public Product GetFullProductByID(int ID)
+        {
+            return _productrepository.GetProductByID(ID);
+        }
+
+
+        public bool UpdateAfterOrder(ProductInDTO product, int ID)
+        {
+            return _productrepository.UpdateAfterOrder(product, ID);
         }
     }
 }

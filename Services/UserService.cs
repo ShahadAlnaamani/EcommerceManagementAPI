@@ -1,7 +1,6 @@
 ﻿using EcommerceManagementAPI.DTOs;
 using EcommerceManagementAPI.Models;
 using EcommerceManagementAPI.Repositories;
-using Org.BouncyCastle.Crypto.Generators;
 
 namespace EcommerceManagementAPI.Services
 {

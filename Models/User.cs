@@ -43,5 +43,10 @@ namespace EcommerceManagementAPI.Models
 
         [JsonIgnore]
         public virtual ICollection<Review> Reviews { get; set; }
+
+        internal static ReadOnlySpan<byte> FindFirst(string nameIdentifier)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
