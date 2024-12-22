@@ -38,7 +38,7 @@ namespace EcommerceManagementAPI.Controllers
         }
 
         [HttpGet("GetAllReviewsByProduct")]
-        public IActionResult GetProductReviews(int PageSize, int page, int productID)
+        public IActionResult GetProductReviews(int productID, int PageSize = 0, int page = 100)
         {
             try
             {

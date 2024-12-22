@@ -70,45 +70,52 @@ namespace EcommerceManagementAPI.Services
 
         public int AddReview(ReviewInDTO review, int userID)
         {
-            int prodID = _productservice.GetProductByName(review.ProductName);
-            if (prodID == 0 || prodID == null)
+            //Validating that the product actually exists 
+            var CheckProduct = _productservice.GetFullProductByName(review.ProductName);
+
+            if (CheckProduct != null)
             {
-                throw new Exception("<!>The product name inputted does not exist<!>");
-            }
-            var pastOrders = _orderservice.GetMyOrders(userID);
-            bool valid = false;
-            if (pastOrders != null)
-            {
-                foreach (var order in pastOrders)
+                int prodID = _productservice.GetProductByName(review.ProductName);
+                if (prodID == 0 || prodID == null)
                 {
-                    var OrdProds = _orderproductservice.GetOrderProdsByOrderID(order.OID);
-                    foreach (var ordprod in OrdProds)
+                    throw new Exception("<!>The product name inputted does not exist<!>");
+                }
+                var pastOrders = _orderservice.GetMyOrders(userID);
+                bool valid = false;
+                if (pastOrders != null)
+                {
+                    foreach (var order in pastOrders)
                     {
-                        if (ordprod.ProductID == prodID)
+                        var OrdProds = _orderproductservice.GetOrderProdsByOrderID(order.OID);
+                        foreach (var ordprod in OrdProds)
                         {
-                            valid = true;
+                            if (ordprod.ProductID == prodID)
+                            {
+                                valid = true;
+                            }
                         }
                     }
                 }
-            }
-            if (valid)
-            {
-                var pastReview = _reviewservice.CheckNewProdReview(userID, prodID);
-                if (pastReview == null)
+                if (valid)
                 {
-                    var NewReview = new Review
+                    var pastReview = _reviewservice.CheckNewProdReview(userID, prodID);
+                    if (pastReview == null)
                     {
-                        UserID = userID,
-                        ProductID = prodID,
-                        Rating = review.Rating,
-                        Comment = review.Comment,
-                        ReviewDate = DateTime.Now,
-                    };
-                    return _reviewservice.AddReview(NewReview);
+                        var NewReview = new Review
+                        {
+                            UserID = userID,
+                            ProductID = prodID,
+                            Rating = review.Rating,
+                            Comment = review.Comment,
+                            ReviewDate = DateTime.Now,
+                        };
+                        return _reviewservice.AddReview(NewReview);
+                    }
+                    else throw new Exception("<!>It looks like you have already made a review on this product before<!>");
                 }
-                else throw new Exception("<!>It looks like you have already made a review on this product before<!>");
+                else throw new Exception("<!>It looks like you have not ordered this product, you may only review products you have previously ordered<!>");
             }
-            else throw new Exception("<!>It looks like you have not ordered this product, you may only review products you have previously ordered<!>");
+            else throw new Exception("<!>This product does not exist<!>");
         }
 
 

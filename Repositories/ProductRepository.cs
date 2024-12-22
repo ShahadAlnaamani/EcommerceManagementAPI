@@ -129,5 +129,10 @@ namespace EcommerceManagementAPI.Repositories
             var prod = _context.Products.Where(p => p.Name == Name).FirstOrDefault();
             return prod.PID;
         }
+
+        public Product GetFullProductsByName(string Name) 
+        {
+            return _context.Products.Where(p=> p.Name == Name).FirstOrDefault();
+        }
     }
 }

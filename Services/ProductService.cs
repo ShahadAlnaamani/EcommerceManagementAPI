@@ -126,5 +126,10 @@ namespace EcommerceManagementAPI.Services
         {
             return _productrepository.GetProductNameByID(ID);
         }
+
+        public Product GetFullProductByName(string name)
+        {
+            return _productrepository.GetFullProductsByName(name);
+        }
     }
 }
