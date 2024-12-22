@@ -32,7 +32,7 @@ namespace EcommerceManagementAPI.Services
             {
                 Name = Newuser.Name,
                 Email = Newuser.Email,
-                Password = Newuser.Password,
+                Password = hashed,
                 PhoneNumber = Newuser.PhoneNumber,
                 Role = Role.NormalUser,
                 AccountActive = true,
@@ -51,7 +51,7 @@ namespace EcommerceManagementAPI.Services
             bool verified = BCrypt.Net.BCrypt.Verify(password, hashedpass);
             if (verified)
             {
-                return _userrepository.GetUserByEmail(email, password);
+                return _userrepository.GetUserByEmail(email, hashedpass);
             }
 
             else throw new UnauthorizedAccessException("<!>Invalid credentials<!>");
@@ -131,7 +131,7 @@ namespace EcommerceManagementAPI.Services
             {
                 Name = Newadmin.Name,
                 Email = Newadmin.Email,
-                Password = Newadmin.Password,
+                Password = hashed,
                 PhoneNumber = Newadmin.PhoneNumber,
                 Role = Role.Admin,
                 AccountActive = true,
