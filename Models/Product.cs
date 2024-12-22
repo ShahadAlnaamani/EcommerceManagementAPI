@@ -17,7 +17,7 @@ namespace EcommerceManagementAPI.Models
         public string Description { get; set; }
 
         [Required]
-        public string CatId { get; set; }
+        public string Category { get; set; }
 
         [Required]
         [Range(minimum: 0.1, maximum: int.MaxValue)]
