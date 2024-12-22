@@ -53,7 +53,7 @@ namespace EcommerceManagementAPI.Controllers
         [HttpPatch("Update Review")]
         public IActionResult UpdateReview(int reviewID, ReviewInDTO newRev)
         {
-            var userID = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;  // Checking if request is being done by an admin
+            var userID = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;  
 
             try
             {
@@ -68,7 +68,7 @@ namespace EcommerceManagementAPI.Controllers
         [HttpDelete("Delete Review")]
         public IActionResult DeleteReview(int reviewID)
         {
-            var userID = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;  // Checking if request is being done by an admin
+            var userID = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;  
 
             try
             {

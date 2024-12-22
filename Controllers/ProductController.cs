@@ -22,7 +22,7 @@ namespace EcommerceManagementAPI.Controllers
         [HttpPost("ADMIN: AddProduct")]
         public IActionResult AddProduct(ProductInDTO product)
         {
-            var userID = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;  // Checking if request is being done by an admin
+            var userID = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;  
             try
             {
                 return Ok(_productService.AddProduct(product, int.Parse(userID)));
@@ -38,7 +38,7 @@ namespace EcommerceManagementAPI.Controllers
         [HttpPost("ADMIN: Update product")]
         public IActionResult UpdateProduct(ProductInDTO update)
         {
-            var userID = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;  // Checking if request is being done by an admin
+            var userID = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;  
              return Ok(_productService.UpdateProduct(update, int.Parse(userID)));
         }
 

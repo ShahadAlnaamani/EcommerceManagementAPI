@@ -38,11 +38,13 @@ namespace EcommerceManagementAPI.Repositories
         public void UpdateReview(Review review)
         {
             _context.Reviews.Update(review);
+            _context.SaveChanges();
         }
 
         public void DeleteReview(Review review)
         {
             _context.Reviews.Remove(review);
+            _context.SaveChanges();
         }
 
         public Review Getspecific(int userID, int prodID)
